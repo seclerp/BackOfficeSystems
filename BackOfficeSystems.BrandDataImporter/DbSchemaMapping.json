@@ -1,0 +1,11 @@
+﻿{
+  "Brands": {
+    "BRAND_ID": "Id",
+    "Name": "Name"
+  },
+  "BrandsQuantity": {
+    "TIME_RECEIVED": "TimeReceived",
+    "QUANTITY": "Quantity",
+    "BRAND_ID": "BrandId"
+  }
+}
