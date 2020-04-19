@@ -22,13 +22,7 @@ namespace BackOfficeSystems.BrandDataImporter.Services
 
         public void Load(IEnumerable<string> fileNames, string pathToSchema, string databaseName)
         {
-            // 1. Load scheme
-            using var pathToSchemaContext = LogContext.PushProperty("PathToSchema", pathToSchema);
-            Log.Information("Loading SQL schema");
-            var schema = File.ReadAllText(pathToSchema);
-            Log.Information("SQL schema successfully loaded");
-
-            // 2. Resolve TsvFiles by filename
+            // 1. Resolve TsvFiles by filenames
             using var filesToImportContext = LogContext.PushProperty("FilesToImport", fileNames);
             Log.Information("Start loading and parsing TSV files");
             var tsvFiles =
@@ -40,7 +34,7 @@ namespace BackOfficeSystems.BrandDataImporter.Services
                     });
             Log.Information("TSV files successfully loaded and parsed");
 
-            // 3. Validate files
+            // 2. Validate files
             Log.Information("Start validating TSV files");
             var validatedFiles =
                 tsvFiles
@@ -51,6 +45,12 @@ namespace BackOfficeSystems.BrandDataImporter.Services
                         return _validator.Validate(tsvFile);
                     }).ToList();
             Log.Information("TSV files successfully validated");
+
+            // 3. Load scheme
+            using var pathToSchemaContext = LogContext.PushProperty("PathToSchema", pathToSchema);
+            Log.Information("Loading SQL schema");
+            var schema = File.ReadAllText(pathToSchema);
+            Log.Information("SQL schema successfully loaded");
 
             // 4. Ensure that database for insertion exists, create if not
             _importService.EnsureDatabaseCreated(schema, databaseName);
