@@ -2,11 +2,11 @@
 
 namespace BackOfficeSystems.BrandDataImporter.Exceptions
 {
-    public class TsvValidationException : Exception
+    public class TsvParsingException : Exception
     {
         public string Error { get; }
 
-        public TsvValidationException(string error)
+        public TsvParsingException(string error)
         {
             Error = error;
         }
