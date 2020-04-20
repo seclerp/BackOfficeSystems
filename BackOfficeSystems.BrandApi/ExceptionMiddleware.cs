@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.IO;
 using System.Net;
 using System.Text.Json;
@@ -11,6 +11,9 @@ using Microsoft.Extensions.Logging;
 
 namespace BackOfficeSystems.BrandApi
 {
+    /// <summary>
+    /// Handles exceptions and creates unified response
+    /// </summary>
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
@@ -27,6 +30,8 @@ namespace BackOfficeSystems.BrandApi
             _next = next;
         }
 
+        // ReSharper disable once UnusedMember.Global
+        // Used implicitly by ASP.NET Core middleware pipeline
         public async Task InvokeAsync(HttpContext httpContext)
         {
             try
@@ -42,8 +47,6 @@ namespace BackOfficeSystems.BrandApi
 
         private Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-
-
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
             var errorResponse = exception switch
@@ -51,7 +54,7 @@ namespace BackOfficeSystems.BrandApi
                 var ex when ex is BrandNotFoundException brandNotFound =>
                     new ErrorResponse
                     {
-                        StatusCode = StatusCodes.Status400BadRequest,
+                        StatusCode = StatusCodes.Status404NotFound,
                         Message = $"Brand with ID {brandNotFound.BrandId} not found"
                     },
 
@@ -63,6 +66,7 @@ namespace BackOfficeSystems.BrandApi
                     }
             };
 
+            // Trying to determine response content type using Accept header, fallback to JSON
             switch (context.Request.Headers["Accept"])
             {
                 case "application/xml":
@@ -72,6 +76,7 @@ namespace BackOfficeSystems.BrandApi
                         _xmlSerializer.Serialize(textWriter, errorResponse);
                         return context.Response.WriteAsync(textWriter.ToString());
                     }
+
                 default:
                     context.Response.ContentType = "application/json";
                     return context.Response.WriteAsync(JsonSerializer.Serialize(errorResponse, _responseSerializerOptions));

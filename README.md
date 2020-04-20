@@ -149,3 +149,14 @@ npm run serve
 Open BackOfficeSystems.ClientApp folder in any appropriate IDE, enrich environment variable `VUE_APP_API_ROOT` with your backend API root (by default equals `http://localhost:5000`, nut it need to be provided explicitly) and run NPM script `serve`.
 
 After successful running app 'll be available on `http://localhost:8080`.
+
+## Unit tests
+
+There are some unit tests for **BrandDataImporter** located in `BackOfficeSystems.BrandDataImporter.UnitTests` project. Tests implemented using xUnit framework and **AAA** principles.
+
+### How to run tests
+
+```bash
+cd BackOfficeSystems.BrandDataImporter.UnitTests
+dotnet test
+```

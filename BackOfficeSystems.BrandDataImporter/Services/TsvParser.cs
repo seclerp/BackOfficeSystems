@@ -40,12 +40,7 @@ namespace BackOfficeSystems.BrandDataImporter.Services
                 rows.Add(ReadRow(csvReader));
             }
 
-            return new TsvFile
-            {
-                ShortName = shortFileName,
-                Headers = headers,
-                Rows = rows.ToArray()
-            };
+            return new TsvFile(shortFileName, headers, rows.ToArray());
         }
     }
 }

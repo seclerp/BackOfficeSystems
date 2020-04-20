@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using BackOfficeSystems.BrandApi.Api.Models;
@@ -12,6 +12,7 @@ namespace BackOfficeSystems.BrandApi.Controllers
     [ApiController]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
     [InputValidation]
     public class BrandController : ControllerBase
     {

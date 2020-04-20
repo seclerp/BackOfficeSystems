@@ -19,5 +19,12 @@
         /// Array of TSV rows. Each of then contains columns in same order as <see cref="Headers"/>. Used as source of SQL column values
         /// </summary>
         public string[][] Rows { get; set; }
+
+        public TsvFile(string shortName, string[] headers, string[][] rows)
+        {
+            ShortName = shortName;
+            Headers = headers;
+            Rows = rows;
+        }
     }
 }

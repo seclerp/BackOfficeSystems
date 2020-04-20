@@ -17,7 +17,11 @@ namespace BackOfficeSystems.BrandDataImporter
             using var fillService = new DatabaseImportService(connectionString);
             var loader = new TsvLoader(parser, validator, fillService);
 
-            loader.Load(settings.FilesToImport, settings.DbSchemaFile, settings.DatabaseName);
+            loader.Load(
+                settings.FilesToImport ?? throw new AppSettingsMissingException(nameof(settings.FilesToImport)),
+                settings.DbSchemaFile ?? throw new AppSettingsMissingException(nameof(settings.DbSchemaFile)),
+                settings.DatabaseName ?? throw new AppSettingsMissingException(nameof(settings.DatabaseName))
+            );
         }
 
         static void Main(string[] args)
