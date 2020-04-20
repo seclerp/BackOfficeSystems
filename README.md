@@ -2,7 +2,7 @@
 Mini project implementation for Senior Software Engineer position
 
 ## Requirements
-You need to have **.NET Core 3.1** installed in order to run this solution.
+You need to have **.NET Core 3.1** and **NodeJS 12.x** installed in order to run this solution.
 
 ## Part One (Brand Data Importer)
 
@@ -106,3 +106,46 @@ dotnet run  --environment Development
 #### IDE:
 
 Just open .sln file in your favorite IDE, provide `ConnectionStrings__BackOfficeSystems` env variable to `BackOfficeSystems.BrandApi/launchSettings.json` file, under `profiles/BackOfficeSystems.BrandApi/environmentVariables` section and hit `"Build and Run"`.
+
+## Part Three (Brand Client App)
+
+### Overview
+
+Part Three is implemented using VueJS + Vue Material. Vue Router is used to implement multipage app. 
+
+Application can consume settings from environment variables. Environment variables could be also provided using `.env.local` file.
+
+Built on top of dependencies:
+- `dotenv`
+- `node-sass`
+- `sass-loader`
+- `vue`
+- `vue-material`
+- `vue-router`
+- `vuelidate`
+
+### Running
+
+**Part Three is dependent on Part Two, so, before starting Part Three - please run Part Two.**
+
+To run application execute following in console/terminal (from the root repository folder):
+
+#### Windows:
+```cmd
+set VUE_APP_API_ROOT=http://localhost:5000
+cd BackOfficeSystems.ClientApp
+npm run serve
+```
+
+#### Unix:
+```bash
+export VUE_APP_API_ROOT=http://localhost:5000
+cd BackOfficeSystems.ClientApp
+npm run serve
+```
+
+#### IDE:
+
+Open BackOfficeSystems.ClientApp folder in any appropriate IDE, enrich environment variable `VUE_APP_API_ROOT` with your backend API root (by default equals `http://localhost:5000`, nut it need to be provided explicitly) and run NPM script `serve`.
+
+After successful running app 'll be available on `http://localhost:8080`.
