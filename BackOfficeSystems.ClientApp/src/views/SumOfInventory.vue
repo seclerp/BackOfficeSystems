@@ -1,6 +1,6 @@
 ﻿<template>
     <div class="md-layout md-gutter md-alignment-top-center">
-        <div class="md-layout-item md-size-50 md-medium-size-33 md-small-size-50 md-xsmall-size-100">
+        <div class="md-layout-item md-size-50 md-medium-size-50 md-small-size-75 md-xsmall-size-100">
             <SumOfInventoryTable :data="sumOfInventoryData" />
         </div>
     </div>

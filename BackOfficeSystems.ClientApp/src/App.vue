@@ -1,6 +1,6 @@
 ﻿<template>
     <div class="page-container">
-        <md-app md-waterfall md-mode="fixed">
+        <md-app md-mode="fixed">
             <md-app-toolbar class="md-primary">
                 <md-button class="md-icon-button" @click="menuVisible = true">
                     <md-icon>menu</md-icon>
@@ -33,6 +33,7 @@
 
 <style lang="scss" scoped>
     .md-app {
+        max-height: 100vh;
         min-height: 100vh;
     }
 </style>
