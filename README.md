@@ -13,7 +13,7 @@ Main point about implementation is that is generic. You need to only change coup
 
 Application need to know how tables are looking to create it on fly. So it need to use SQL schema for it. Schema for Brands are in `DbSchema.sql` file and is used by default.
 
-In current implementation there is 1:1 relation between file and table. So, only 1 `.tsv` per SQL table could be used in one run.
+In current implementation there is 1:1 relation between file and table. So, only one `.tsv` per SQL table could be used in one run.
 
 Also, not all data could be inserted in MySQL database as is. For example, datetime need to be converted to appropriate view to avoid MySQL errors. For that purpose application will try to get column types from database and transform data using one of `ITransformer` implementation.
 

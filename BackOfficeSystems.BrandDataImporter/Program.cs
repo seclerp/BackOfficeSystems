@@ -32,6 +32,7 @@ namespace BackOfficeSystems.BrandDataImporter
 
             Log.Logger =
                 new LoggerConfiguration()
+                    .Enrich.FromLogContext()
                     .WriteTo.Console(config.VerboseLogging ? LogEventLevel.Information : LogEventLevel.Warning)
                     .CreateLogger();
 
@@ -52,6 +53,11 @@ namespace BackOfficeSystems.BrandDataImporter
             catch (Exception ex)
             {
                 Log.Fatal("Unknown error occured: {Error}", ex);
+            }
+            finally
+            {
+                // If there was something in buffer - flush it into sinks
+                Log.CloseAndFlush();
             }
         }
     }
