@@ -12,6 +12,7 @@ namespace BackOfficeSystems.BrandApi.Controllers
     [ApiController]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    [InputValidation]
     public class BrandController : ControllerBase
     {
         private readonly IBrandRepository _brandRepository;
