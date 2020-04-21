@@ -10,17 +10,6 @@ namespace BackOfficeSystems.BrandDataImporter.Services
 {
     public class TsvParser : ITsvParser
     {
-        private string[] ReadRow(CsvReader reader)
-        {
-            var row = new string[reader.FieldsCount];
-            for (var i = 0; i < reader.FieldsCount; i++)
-            {
-                row[i] = reader[i];
-            }
-
-            return row;
-        }
-
         public TsvFile FromStream(string shortFileName, Stream stream)
         {
             using var textReader = new StreamReader(stream);
@@ -41,6 +30,17 @@ namespace BackOfficeSystems.BrandDataImporter.Services
             }
 
             return new TsvFile(shortFileName, headers, rows.ToArray());
+        }
+
+        private string[] ReadRow(CsvReader reader)
+        {
+            var row = new string[reader.FieldsCount];
+            for (var i = 0; i < reader.FieldsCount; i++)
+            {
+                row[i] = reader[i];
+            }
+
+            return row;
         }
     }
 }

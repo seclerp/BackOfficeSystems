@@ -36,22 +36,6 @@ namespace BackOfficeSystems.BrandDataImporter.Services
             _defaultTransformer = defaultTransformer ?? new StringTransformer();
         }
 
-        private ITransformer DetermineTransformer(Dictionary<string, string> columnTypes, string columnName) =>
-            _transformers.ContainsKey(columnTypes[columnName])
-                ? _transformers[columnTypes[columnName]]
-                : _defaultTransformer;
-
-        private string MakeInsertQuery(string tableName, string[] columns, string databaseName)
-        {
-            // QuoteIdentifier is used to Protect from SQL injections
-            var quotedDatabaseName = _commandBuilder.QuoteIdentifier(databaseName);
-            var quotedTableName = _commandBuilder.QuoteIdentifier(tableName);
-            var quotedColumnsNames = string.Join(", ", columns.Select(_commandBuilder.QuoteIdentifier));
-            var valuesParameters = string.Join(", ", Enumerable.Range(0, columns.Length).Select(number => $"@Value{number}"));
-
-            return $"INSERT INTO {quotedDatabaseName}.{quotedTableName} ({quotedColumnsNames}) VALUES ({valuesParameters})";
-        }
-
         public void EnsureDatabaseCreated(string schema, string databaseName)
         {
             using var transaction = _mySqlConnection.BeginTransaction();
@@ -95,6 +79,22 @@ namespace BackOfficeSystems.BrandDataImporter.Services
         public void Dispose()
         {
             _mySqlConnection?.Dispose();
+        }
+
+        private ITransformer DetermineTransformer(Dictionary<string, string> columnTypes, string columnName) =>
+            _transformers.ContainsKey(columnTypes[columnName])
+                ? _transformers[columnTypes[columnName]]
+                : _defaultTransformer;
+
+        private string MakeInsertQuery(string tableName, string[] columns, string databaseName)
+        {
+            // QuoteIdentifier is used to Protect from SQL injections
+            var quotedDatabaseName = _commandBuilder.QuoteIdentifier(databaseName);
+            var quotedTableName = _commandBuilder.QuoteIdentifier(tableName);
+            var quotedColumnsNames = string.Join(", ", columns.Select(_commandBuilder.QuoteIdentifier));
+            var valuesParameters = string.Join(", ", Enumerable.Range(0, columns.Length).Select(number => $"@Value{number}"));
+
+            return $"INSERT INTO {quotedDatabaseName}.{quotedTableName} ({quotedColumnsNames}) VALUES ({valuesParameters})";
         }
     }
 }

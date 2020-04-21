@@ -8,12 +8,6 @@ namespace BackOfficeSystems.BrandDataImporter.UnitTests
 {
     public class TsvParserTests : BaseTest
     {
-        private static Stream StringToStream(string input)
-        {
-            var bytes = Encoding.ASCII.GetBytes(input);
-            return new MemoryStream(bytes);
-        }
-
         [Fact]
         public void Parse_Valid_Tsv_Input()
         {
@@ -40,6 +34,12 @@ namespace BackOfficeSystems.BrandDataImporter.UnitTests
             void Act() => tsvParser.FromStream(shortName, validTsvStream);
 
             Assert.Throws<TsvParsingException>(Act);
+        }
+
+        private static Stream StringToStream(string input)
+        {
+            var bytes = Encoding.ASCII.GetBytes(input);
+            return new MemoryStream(bytes);
         }
     }
 }
