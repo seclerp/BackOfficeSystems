@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace BackOfficeSystems.BrandApi
 {
+    /// <summary>
+    /// Acton filter that creates unified error response when provided model is not valid
+    /// </summary>
     public class InputValidationAttribute : Attribute, IActionFilter
     {
         public void OnActionExecuting(ActionExecutingContext context)

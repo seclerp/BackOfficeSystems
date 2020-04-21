@@ -5,7 +5,10 @@ using Xunit;
 
 namespace BackOfficeSystems.BrandDataImporter.UnitTests
 {
-    public class TsvValidatorTests : BaseTest
+    /// <summary>
+    /// Unit tests for <see cref="TsvFileValidator"/> class
+    /// </summary>
+    public class TsvFileValidatorTests : BaseTest
     {
         [Fact]
         public void Validate_Valid_Tsv_File()

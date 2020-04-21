@@ -6,6 +6,9 @@ using Xunit;
 
 namespace BackOfficeSystems.BrandDataImporter.UnitTests
 {
+    /// <summary>
+    /// Unit tests for <see cref="TsvParser"/> class
+    /// </summary>
     public class TsvParserTests : BaseTest
     {
         [Fact]

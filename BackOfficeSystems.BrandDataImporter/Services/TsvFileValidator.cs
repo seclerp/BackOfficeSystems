@@ -5,6 +5,9 @@ using BackOfficeSystems.BrandDataImporter.Models;
 
 namespace BackOfficeSystems.BrandDataImporter.Services
 {
+    /// <summary>
+    /// General implementation of <see cref="ITsvFileValidator"/>
+    /// </summary>
     public class TsvFileValidator : ITsvFileValidator
     {
         public TsvFile Validate(TsvFile file)

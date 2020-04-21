@@ -7,6 +7,9 @@ using MySql.Data.MySqlClient;
 
 namespace BackOfficeSystems.BrandDataImporter.Services
 {
+    /// <summary>
+    /// Implementation of <see cref="ITableInfoProvider"/> that provides data about MySQL tables
+    /// </summary>
     public class TableInfoProvider : ITableInfoProvider
     {
         private const string ColumnTypesQuery =
@@ -15,6 +18,7 @@ namespace BackOfficeSystems.BrandDataImporter.Services
 
         private readonly MySqlConnection _connection;
 
+        /// <param name="connection">Opened MySQL connection</param>
         public TableInfoProvider(MySqlConnection connection)
         {
             _connection = connection;

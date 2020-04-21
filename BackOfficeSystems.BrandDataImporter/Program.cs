@@ -14,7 +14,7 @@ namespace BackOfficeSystems.BrandDataImporter
         {
             var parser = new TsvParser();
             var validator = new TsvFileValidator();
-            using var fillService = new DatabaseImportService(connectionString);
+            using var fillService = new MySqlDatabaseImportService(connectionString);
             var loader = new TsvLoader(parser, validator, fillService);
 
             loader.Load(

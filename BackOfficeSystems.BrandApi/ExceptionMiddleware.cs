@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 namespace BackOfficeSystems.BrandApi
 {
     /// <summary>
-    /// Handles exceptions and creates unified response
+    /// Handles exceptions and creates unified error response
     /// </summary>
     public class ExceptionMiddleware
     {

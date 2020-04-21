@@ -7,8 +7,8 @@ namespace BackOfficeSystems.BrandApi.Api.Models
         [Required]
         public int Id { get; set; }
 
-        [StringLength(maximumLength: 100, MinimumLength = 1)]
         [Required]
+        [StringLength(maximumLength: 100, MinimumLength = 1)]
         public string Name { get; set; }
     }
 }

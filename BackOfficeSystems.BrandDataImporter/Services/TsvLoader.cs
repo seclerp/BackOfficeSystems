@@ -7,12 +7,18 @@ using Serilog.Context;
 
 namespace BackOfficeSystems.BrandDataImporter.Services
 {
+    /// <summary>
+    /// General implementation of <see cref="ITsvLoader"/>
+    /// </summary>
     public class TsvLoader : ITsvLoader
     {
         private readonly ITsvParser _tsvParser;
         private readonly ITsvFileValidator _validator;
         private readonly IDatabaseImportService _importService;
 
+        /// <param name="tsvParser">Parser that need to be used for parsing .tsv files</param>
+        /// <param name="validator">Validator that need to be used for validating parsed files</param>
+        /// <param name="importService">Service that need to be used to import validated data into database</param>
         public TsvLoader(ITsvParser tsvParser, ITsvFileValidator validator, IDatabaseImportService importService)
         {
             _tsvParser = tsvParser;

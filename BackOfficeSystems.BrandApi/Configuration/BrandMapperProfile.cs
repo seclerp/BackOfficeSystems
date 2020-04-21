@@ -5,6 +5,9 @@ using BackOfficeSystems.BrandApi.Domain.BrandAggregate;
 namespace BackOfficeSystems.BrandApi.Configuration
 {
     // ReSharper disable once UnusedType.Global
+    /// <summary>
+    /// Mappings for Brand models
+    /// </summary>
     public class BrandMapperProfile : Profile
     {
         public BrandMapperProfile()

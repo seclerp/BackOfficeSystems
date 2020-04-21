@@ -9,10 +9,10 @@ namespace BackOfficeSystems.BrandDataImporter.Contracts
     public interface ITsvFileValidator
     {
         /// <summary>
-        /// Validates
+        /// Validates given <see cref="TsvFile"/> object and returns it on success
         /// </summary>
         /// <param name="file"></param>
-        /// <returns></returns>
+        /// <returns>Validated file</returns>
         /// <exception cref="TsvValidationException">Throws when TsvFile has incorrect format or data</exception>
         TsvFile Validate(TsvFile file);
     }

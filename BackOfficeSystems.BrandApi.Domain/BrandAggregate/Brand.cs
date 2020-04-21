@@ -3,10 +3,16 @@ using System.Linq;
 
 namespace BackOfficeSystems.BrandApi.Domain.BrandAggregate
 {
+    /// <summary>
+    /// Brand aggregate root
+    /// </summary>
     public class Brand
     {
         public int BrandId { get; set; }
 
+        /// <summary>
+        /// Name of a brand
+        /// </summary>
         public string Name => _name;
         private string _name;
 

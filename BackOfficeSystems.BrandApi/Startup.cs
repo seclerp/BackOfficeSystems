@@ -53,6 +53,7 @@ namespace BackOfficeSystems.BrandApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Configure CORS policy to allow access of client app that hosted on another host
             app.UseCors(builder =>
                 builder
                     .AllowAnyOrigin()

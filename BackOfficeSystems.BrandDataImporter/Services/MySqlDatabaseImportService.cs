@@ -10,17 +10,21 @@ using Serilog;
 
 namespace BackOfficeSystems.BrandDataImporter.Services
 {
-    public class DatabaseImportService : IDisposable, IDatabaseImportService
+    /// <summary>
+    /// Implementation of <see cref="IDatabaseImportService"/> that import data into MySQL database
+    /// </summary>
+    public class MySqlDatabaseImportService : IDisposable, IDatabaseImportService
     {
         private readonly MySqlConnection _mySqlConnection;
         private readonly MySqlCommandBuilder _commandBuilder;
         private readonly ITableInfoProvider _tableInfoProvider;
-
         private readonly Dictionary<string, ITransformer> _transformers;
-
         private readonly ITransformer _defaultTransformer;
 
-        public DatabaseImportService(string connectionString, Dictionary<string, ITransformer>? transformers = null, ITransformer? defaultTransformer = null)
+        /// <param name="connectionString">MySQL connection string</param>
+        /// <param name="transformers">Transformers that need to be used with raw string values</param>
+        /// <param name="defaultTransformer">Default transformer used to transform data when transform for type is not found</param>
+        public MySqlDatabaseImportService(string connectionString, Dictionary<string, ITransformer>? transformers = null, ITransformer? defaultTransformer = null)
         {
             _mySqlConnection = new MySqlConnection(connectionString);
             _mySqlConnection.Open();
